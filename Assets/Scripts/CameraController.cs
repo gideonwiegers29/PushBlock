@@ -14,14 +14,11 @@ public class CameraController : MonoBehaviour
     public float sensitivity = 2.0f;
     public float playerSpeed = 5.0f;
 
+
     public GameObject player;
     // Update is called once per frame
     void Update()
     {
-        mouseX = Input.GetAxis("Mouse X") * sensitivity;
-        mouseY = Input.GetAxis("Mouse Y") * sensitivity;
-        player.transform.Rotate(Vector3.up * mouseX * mouseMovement); // Left/Right (on the player body)
-        transform.Rotate(Vector3.left * mouseY * mouseMovement);
 
         if (Input.GetKey(KeyCode.W)) {
             player.transform.Translate(Vector3.left * Time.deltaTime * playerSpeed);
@@ -52,6 +49,13 @@ public class CameraController : MonoBehaviour
             Cursor.lockState = CursorLockMode.None;
             mouseMovement = 0;
         }
-        
+        yRotation = transform.eulerAngles.y;
+    }
+    void LateUpdate()
+    {
+        mouseX = Input.GetAxis("Mouse X") * sensitivity;
+        mouseY = Input.GetAxis("Mouse Y") * sensitivity;
+        player.transform.Rotate(Vector3.up * mouseX * mouseMovement); // Left/Right (on the player body)
+        transform.Rotate(Vector3.left * mouseY * mouseMovement);
     }
 }
