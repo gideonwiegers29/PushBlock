@@ -10,17 +10,19 @@ public class BlockHandler : MonoBehaviour
 
     public GameObject player;
 
-    void OnCollisionEnter(Collision collision) {
-        if (collision.gameObject.name == "Player") {
-            Vector3 normal = collision.GetContact(0).normal;
-            transform.Translate(normal);
-    }
 
     // Update is called once per frame
     void Update()
     {
-
+        transform.rotation = Quaternion.Euler(0, 0, 0);
     }
+
+    void OnCollisionEnter(Collision collision) {
+        if (collision.gameObject.transform == player.transform) {
+            Vector3 normal = collision.GetContact(0).normal;
+            transform.Translate(normal);
+    }
+
 
     }
 }
