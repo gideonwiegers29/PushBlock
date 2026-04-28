@@ -13,13 +13,14 @@ public class CameraController : MonoBehaviour
     public float mouseY;
     public float sensitivity = 2.0f;
     public float playerSpeed = 5.0f;
+    public float verticalRotation;
+    private float minPitch = -55, maxPitch = 55;
 
 
     public GameObject player;
     // Update is called once per frame
     void Update()
     {
-
         if (Input.GetKey(KeyCode.W)) {
             player.transform.Translate(Vector3.left * Time.deltaTime * playerSpeed);
         }
@@ -54,8 +55,11 @@ public class CameraController : MonoBehaviour
     void LateUpdate()
     {
         mouseX = Input.GetAxis("Mouse X") * sensitivity;
-        mouseY = Input.GetAxis("Mouse Y") * sensitivity;
+        mouseY = Input.GetAxis("Mouse Y");
+        verticalRotation -= mouseY * sensitivity;
+        verticalRotation = Mathf.Clamp(verticalRotation, minPitch, maxPitch);
         player.transform.Rotate(Vector3.up * mouseX * mouseMovement); // Left/Right (on the player body)
-        transform.Rotate(Vector3.left * mouseY * mouseMovement);
+        transform.localRotation = Quaternion.Euler(verticalRotation * mouseMovement, 0, 0);
+
     }
 }
