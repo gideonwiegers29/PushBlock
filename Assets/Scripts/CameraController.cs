@@ -49,7 +49,7 @@ public class CameraController : MonoBehaviour
             Cursor.lockState = CursorLockMode.None;
             mouseMovement = 0;
         }
-        yRotation = transform.eulerAngles.y;
+        // yRotation = transform.eulerAngles.y;
     }
     void LateUpdate()
     {
