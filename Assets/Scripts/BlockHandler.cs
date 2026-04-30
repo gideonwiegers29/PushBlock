@@ -32,28 +32,34 @@ public class BlockHandler : MonoBehaviour
     async void moveBlock(Collision collision) {
         if (collision.gameObject.transform == player.transform) {
             Vector3 normal = collision.GetContact(0).normal;
-            Vector3 position = cube.transform.position;
-            
-            Debug.Log(next_position);
             int times_moved = 0;
-            while (true)
-            {
-                if (IsOccupied(next_position) == false) {
-                    await Task.Delay(2000);
-                    transform.position = next_position;
-                    times_moved += 1;
-                } else if (times_moved > 8) {
+            while (times_moved <= 10) {
+                Vector3 position = cube.transform.position;
+                Vector3 next_pos = getNextPos(normal, position);
+                Debug.Log(next_pos);
+                if (IsOccupied(next_pos) == false) {
+                    cube.transform.position = next_pos;
+                } else
+                {
                     break;
                 }
+                await Task.Delay(200);
+                times_moved += 1;
             }
             
         }
     }
 
-    void getNextPos(Vector3 normal, Vector3 position) {
+    Vector3 getNextPos(Vector3 normal, Vector3 position) {
         Vector3 next_position = new Vector3(Mathf.Round(position.x + normal.x), 1, Mathf.Round(position.z + normal.z));
         return next_position;
     }
+
+    bool IsOccupied(Vector3 position) {
+        Collider[] hitColliders = Physics.OverlapSphere(position, 0.1f);
+        return hitColliders.Length > 0;
+    }
+
 
     void OnCollisionEnter(Collision collision) {
         moveBlock(collision);
