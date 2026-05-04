@@ -1,5 +1,5 @@
 using UnityEngine;
-using System.Threading.Tasks;
+using System.Collections;
 
 public class BlockHandler : MonoBehaviour
 {
@@ -12,6 +12,9 @@ public class BlockHandler : MonoBehaviour
     public GameObject player;
     public GameObject cube;
     private Rigidbody rb;
+    public bool moving = false;
+    public int moveDelay = 200;
+    public int maxMoves = 17;
 
 
     // Update is called once per frame
@@ -29,25 +32,26 @@ public class BlockHandler : MonoBehaviour
         Debug.Log(colliders);
         return colliders.Length > 0;
     }
-    async void moveBlock(Collision collision) {
-        if (collision.gameObject.transform == player.transform) {
-            Vector3 normal = collision.GetContact(0).normal;
-            int times_moved = 0;
-            while (times_moved <= 10) {
-                Vector3 position = cube.transform.position;
-                Vector3 next_pos = getNextPos(normal, position);
-                Debug.Log(next_pos);
-                if (IsOccupied(next_pos) == false) {
-                    cube.transform.position = next_pos;
-                } else
-                {
-                    break;
-                }
-                await Task.Delay(200);
-                times_moved += 1;
+    IEnumerator moveBlock(Collision collision) {
+        moving = true;
+        Vector3 normal = collision.GetContact(0).normal;
+        int times_moved = 0;
+        while (times_moved <= maxMoves) {
+            Vector3 position = cube.transform.position;
+            Vector3 next_pos = getNextPos(normal, position);
+            Debug.Log(next_pos);
+            if (IsOccupied(next_pos) == false) {
+                cube.transform.position = next_pos;
+            } else {
+                moving = false;
+                Debug.Log("stopping");
+                break;
             }
-            
+            yield return new WaitForSeconds(0.2f);
+            times_moved += 1;
         }
+        moving = false;
+        
     }
 
     Vector3 getNextPos(Vector3 normal, Vector3 position) {
@@ -62,7 +66,11 @@ public class BlockHandler : MonoBehaviour
 
 
     void OnCollisionEnter(Collision collision) {
-        moveBlock(collision);
+        if (collision.gameObject.transform == player.transform) {
+            if (moving == false) {
+                StartCoroutine(moveBlock(collision));
+            } else {Debug.Log("already moving!");}
+        } else {Debug.Log("not player!");}
     }
 
 }
