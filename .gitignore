@@ -42,3 +42,5 @@ Thumbs.db
 
 # Crashes
 crashlytics-build.properties
+
+example.py
