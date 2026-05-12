@@ -11,6 +11,7 @@ public class BlockHandler : MonoBehaviour
 
     public GameObject player;
     public GameObject cube;
+    public GameObject goalBlock;
     private Rigidbody rb;
     public bool moving = false;
     public int moveDelay = 200;
@@ -59,11 +60,19 @@ public class BlockHandler : MonoBehaviour
         return next_position;
     }
 
-    bool IsOccupied(Vector3 position) {
+    bool IsOccupied(Vector3 position)
+    {
         Collider[] hitColliders = Physics.OverlapSphere(position, 0.1f);
-        return hitColliders.Length > 0;
-    }
 
+        foreach (Collider hitCollider in hitColliders)
+        {
+            if (hitCollider.gameObject != goalBlock)
+            {
+                return true;
+            }
+        }
+        return false;
+    }
 
     void OnCollisionEnter(Collision collision) {
         if (collision.gameObject.transform == player.transform) {
