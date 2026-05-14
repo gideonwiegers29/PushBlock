@@ -14,7 +14,7 @@ public class LevelLoader : MonoBehaviour
     {
         Debug.Log($"placed at {x}, {y} with type {blockType}");
         if (blockType == 1) {
-            Instantiate(blockPrefab, new Vector3(x -7, 1, y - 7), Quaternion.identity);
+            Instantiate(blockPrefab, new Vector3(x -7, .8f, y - 7), Quaternion.identity);
         } else if (blockType == 2) {
             playerBlock.transform.position = new Vector3(x - 7, 1, y - 7);
             player.transform.position = new Vector3(x - 7, 3, y - 7);

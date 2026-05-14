@@ -36,6 +36,11 @@ public class BlockHandler : MonoBehaviour
     IEnumerator moveBlock(Collision collision) {
         moving = true;
         Vector3 normal = collision.GetContact(0).normal;
+        if (Mathf.Abs(normal.x) > Mathf.Abs(normal.z)) {
+            normal = new Vector3(Mathf.Sign(normal.x), 0, 0);
+        } else {
+            normal = new Vector3(0, 0, Mathf.Sign(normal.z));
+        }
         int times_moved = 0;
         while (times_moved <= maxMoves) {
             Vector3 position = cube.transform.position;
