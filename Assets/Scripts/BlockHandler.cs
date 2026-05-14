@@ -12,6 +12,7 @@ public class BlockHandler : MonoBehaviour
     public GameObject player;
     public GameObject cube;
     public GameObject goalBlock;
+    public GameObject invisPlat;
     private Rigidbody rb;
     public bool moving = false;
     public int moveDelay = 200;
@@ -71,7 +72,7 @@ public class BlockHandler : MonoBehaviour
 
         foreach (Collider hitCollider in hitColliders)
         {
-            if (hitCollider.gameObject != goalBlock)
+            if (hitCollider.gameObject != goalBlock && hitCollider.gameObject != invisPlat)
             {
                 return true;
             }

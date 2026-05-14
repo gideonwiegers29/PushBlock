@@ -21,20 +21,19 @@ public class CameraController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKey(KeyCode.W)) {
-            player.transform.Translate(Vector3.forward * Time.deltaTime * playerSpeed);
-        }
-        if (Input.GetKey(KeyCode.A)) {
-            player.transform.Translate(Vector3.left * Time.deltaTime * playerSpeed);
-        }
-        if (Input.GetKey(KeyCode.D)) {
-            player.transform.Translate(Vector3.right * Time.deltaTime * playerSpeed);
-        }
-        if (Input.GetKey(KeyCode.S)) {
-            player.transform.Translate(Vector3.back * Time.deltaTime * playerSpeed);
-        }
-        if (Input.GetKeyDown(KeyCode.Space)) {
-            player.GetComponent<Rigidbody>().AddForce(Vector3.up * 5f, ForceMode.Impulse);
+        if (Background.playing) {
+            if (Input.GetKey(KeyCode.W)) {
+                player.transform.Translate(Vector3.forward * Time.deltaTime * playerSpeed);
+            }
+            if (Input.GetKey(KeyCode.A)) {
+                player.transform.Translate(Vector3.left * Time.deltaTime * playerSpeed);
+            }
+            if (Input.GetKey(KeyCode.D)) {
+                player.transform.Translate(Vector3.right * Time.deltaTime * playerSpeed);
+            }
+            if (Input.GetKey(KeyCode.S)) {
+                player.transform.Translate(Vector3.back * Time.deltaTime * playerSpeed);
+            }
         }
 
         player.transform.rotation = Quaternion.Euler(0, player.transform.rotation.eulerAngles.y, 0);
