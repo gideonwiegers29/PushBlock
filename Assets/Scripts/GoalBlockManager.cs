@@ -15,7 +15,10 @@ public class GoalBlockManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Debug.Log(IsOccupied(goalBlock.transform.position, playerBlock));
+        if (IsOccupied(goalBlock.transform.position, playerBlock))
+        {
+        Debug.Log("Level Complete");
+        }
     }
 
     bool IsOccupied(Vector3 position, GameObject target)
