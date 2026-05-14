@@ -8,26 +8,7 @@ public class LevelLoader : MonoBehaviour
     public GameObject playerBlock;
     public GameObject goalBlock;
     public GameObject player;
-
-    // 0 = air, 1 = block, 2 = player block, 3 = goal block
-    public int[,] demoLevel = new int[,] {
-        { 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
-        { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
-        { 0, 0, 0, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
-        { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
-        { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0 },
-        { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
-        { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
-        { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
-        { 1, 1, 1, 1, 1, 0, 0, 3, 0, 0, 1, 0, 0, 0, 0, 0 },
-        { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0 },
-        { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0 },
-        { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0 },
-        { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
-        { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
-        { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
-        { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 0, 0 },
-    };
+    public bool levelLoaded;
 
     void PlaceBlock(int x, int y, int blockType)
     {
@@ -41,11 +22,26 @@ public class LevelLoader : MonoBehaviour
         {
             goalBlock.transform.position = new Vector3(x - 7, 1, y - 7);
         }
+        levelLoaded = true;
         
     }
 
-    void LoadLevel(int[,] level)
+    public void LoadLevel(int[,] level)
     {
+        if (levelLoaded == true) {
+            GameObject[] allObjects = FindObjectsByType<GameObject>(FindObjectsSortMode.None);
+            foreach (GameObject obj in allObjects)
+            {
+                Debug.Log(obj.name);
+                if (obj.name == "Cube(Clone)")
+                {
+                    Destroy(obj);
+                }
+            }
+            levelLoaded = false;
+        } else {
+            levelLoaded = true;
+        }
         int rows = level.GetLength(0);
         int cols = level.GetLength(1);
         for (int row = 0; row < rows; row++)
@@ -59,6 +55,6 @@ public class LevelLoader : MonoBehaviour
 
     void Start()
     {
-        LoadLevel(demoLevel);
+        // LoadLevel(Levels.demoLevel);
     }
 }

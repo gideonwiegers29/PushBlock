@@ -40,10 +40,7 @@ public class CameraController : MonoBehaviour
         player.transform.rotation = Quaternion.Euler(0, player.transform.rotation.eulerAngles.y, 0);
 
         // Cursor Lock
-        if (Input.GetKeyDown(KeyCode.L)) {
-            cursorLocked = !cursorLocked;
-        }
-        if (cursorLocked) {
+        if (Background.playing) {
             Cursor.lockState = CursorLockMode.Locked;
             mouseMovement = 1;
         } else {

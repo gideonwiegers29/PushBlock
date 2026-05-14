@@ -3,6 +3,7 @@ using UnityEngine;
 public class Background : MonoBehaviour
 {
     // Assign these in the Inspector
+    public LevelLoader levelLoader;
     public Camera cameraOne;
     public Camera cameraTwo;
     private float pollingTime = 1f; // Update interval in seconds
@@ -13,6 +14,7 @@ public class Background : MonoBehaviour
     public bool ifScreenToggled = true;
     public float mouseX;
     public float mouseY;
+    public static bool playing;
 
     void Start()
     {
@@ -23,6 +25,7 @@ public class Background : MonoBehaviour
             cameraTwo.enabled = false;
         QualitySettings.vSyncCount = 0;
         targetFrameRate = 100;
+        playing = false; 
     }
 
     void Update()
@@ -30,12 +33,17 @@ public class Background : MonoBehaviour
         mouseX = Input.mousePosition.x;
         mouseY = Input.mousePosition.y;
         // Check for a key press (e.g., the 'C' key)
-        if (Input.GetKeyDown(KeyCode.C))
+        if (playing)
+        {
+        if (Input.GetKeyDown(KeyCode.P))
         {
             SwitchCameras();
             ifScreenToggled = !ifScreenToggled;
             text.SetActive(ifScreenToggled);
+            playing = false;
         }
+        }
+        if(!playing){
         if (mouseX > 975)
         {
             if (mouseX < 1575)
@@ -50,6 +58,7 @@ public class Background : MonoBehaviour
                                 SwitchCameras();
                                 ifScreenToggled = !ifScreenToggled;
                                 text.SetActive(ifScreenToggled);
+                                playing = true;
                             }
                         }
                     }
@@ -68,6 +77,7 @@ public class Background : MonoBehaviour
                         if (mouseX < 450)
                         {
                             Debug.Log(1);
+                            levelLoader.LoadLevel(Levels.demoLevel);
                         }
                     }
                     //level 2
@@ -76,6 +86,7 @@ public class Background : MonoBehaviour
                         if (mouseX < 750)
                         {
                             Debug.Log(2);
+                            levelLoader.LoadLevel(Levels.levelOne);
                         }
                     }
                     //level 3
@@ -120,6 +131,7 @@ public class Background : MonoBehaviour
                     }
                 }
             }
+        }
         }
         time += Time.deltaTime;
         frameCount++;   
