@@ -38,9 +38,6 @@ public class Background : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.P))
         {
             SwitchCameras();
-            ifScreenToggled = !ifScreenToggled;
-            text.SetActive(ifScreenToggled);
-            playing = false;
         }
         }
         if(!playing){
@@ -56,9 +53,6 @@ public class Background : MonoBehaviour
                         {
                              {
                                 SwitchCameras();
-                                ifScreenToggled = !ifScreenToggled;
-                                text.SetActive(ifScreenToggled);
-                                playing = true;
                             }
                         }
                     }
@@ -77,7 +71,8 @@ public class Background : MonoBehaviour
                         if (mouseX < 450)
                         {
                             Debug.Log(1);
-                            levelLoader.LoadLevel(Levels.demoLevel);
+                            levelLoader.LoadLevel(Levels.levelOne);
+                            SwitchCameras();
                         }
                     }
                     //level 2
@@ -86,7 +81,8 @@ public class Background : MonoBehaviour
                         if (mouseX < 750)
                         {
                             Debug.Log(2);
-                            levelLoader.LoadLevel(Levels.levelOne);
+                            levelLoader.LoadLevel(Levels.levelTwo);
+                            SwitchCameras();
                         }
                     }
                     //level 3
@@ -155,5 +151,8 @@ public class Background : MonoBehaviour
             cameraOne.enabled = !cameraOne.enabled;
             cameraTwo.enabled = !cameraTwo.enabled;
         }
+        ifScreenToggled = !ifScreenToggled;
+        text.SetActive(ifScreenToggled);
+        playing = !playing;
     }
 }
