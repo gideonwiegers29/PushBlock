@@ -91,6 +91,8 @@ public class Background : MonoBehaviour
                         if (mouseX < 1075)
                         {
                             Debug.Log(3);
+                            levelLoader.LoadLevel(Levels.levelThree);
+                            SwitchCameras();
                         }
                     }
                     //level 4
@@ -99,6 +101,8 @@ public class Background : MonoBehaviour
                         if (mouseX < 1400)
                         {
                             Debug.Log(4);
+                            levelLoader.LoadLevel(Levels.levelFour);
+                            SwitchCameras();
                         }
                     }
                     //level 5
