@@ -4,9 +4,17 @@ using System.Collections;
 public class BlockHandler : MonoBehaviour
 {
     // Start is called once before the first execution of Update after the MonoBehaviour is created
+
+    public static System.Action onReset;
+
     void Start()
     {
         rb = GetComponent<Rigidbody>();
+        onReset = () => {
+            StopAllCoroutines();
+            moving = false;
+        };
+
     }
 
     public GameObject player;
@@ -72,7 +80,7 @@ public class BlockHandler : MonoBehaviour
 
         foreach (Collider hitCollider in hitColliders)
         {
-            if (hitCollider.gameObject != goalBlock && hitCollider.gameObject != invisPlat)
+            if (hitCollider.gameObject != goalBlock && hitCollider.gameObject != invisPlat && hitCollider.gameObject != player)
             {
                 return true;
             }

@@ -4,6 +4,7 @@ public class Background : MonoBehaviour
 {
     // Assign these in the Inspector
     public LevelLoader levelLoader;
+    public BlockHandler blockHandler;
     public Camera cameraOne;
     public Camera cameraTwo;
     private float pollingTime = 1f; // Update interval in seconds
@@ -15,6 +16,7 @@ public class Background : MonoBehaviour
     public float mouseX;
     public float mouseY;
     public static bool playing;
+    public int[,] loadedLevel;
 
     void Start()
     {
@@ -32,6 +34,13 @@ public class Background : MonoBehaviour
     {
         mouseX = Input.mousePosition.x;
         mouseY = Input.mousePosition.y;
+
+        if (Input.GetKeyDown(KeyCode.R)) {
+            BlockHandler.onReset?.Invoke();
+            levelLoader.LoadLevel(loadedLevel);
+
+        }
+
         // Check for a key press (e.g., the 'C' key)
         if (playing)
         {
@@ -41,27 +50,9 @@ public class Background : MonoBehaviour
         }
         }
         if(!playing){
-        if (mouseX > 975)
+        if (mouseY < 726)
         {
-            if (mouseX < 1575)
-            {
-                if (mouseY < 960)
-                {
-                    if (mouseY > 660)
-                    {
-                        if (Input.GetMouseButtonDown(0))
-                        {
-                             {
-                                SwitchCameras();
-                            }
-                        }
-                    }
-                }
-            }
-        }
-        if (mouseY < 600)
-        {
-            if(mouseY > 370)
+            if(mouseY > 480)
             {
                 if (Input.GetMouseButtonDown(0))
                 {
@@ -71,7 +62,8 @@ public class Background : MonoBehaviour
                         if (mouseX < 450)
                         {
                             Debug.Log(1);
-                            levelLoader.LoadLevel(Levels.levelOne);
+                            loadedLevel = Levels.levelOne;
+                            levelLoader.LoadLevel(loadedLevel);
                             SwitchCameras();
                         }
                     }
@@ -81,7 +73,8 @@ public class Background : MonoBehaviour
                         if (mouseX < 750)
                         {
                             Debug.Log(2);
-                            levelLoader.LoadLevel(Levels.levelTwo);
+                            loadedLevel = Levels.levelTwo;
+                            levelLoader.LoadLevel(loadedLevel);
                             SwitchCameras();
                         }
                     }
@@ -91,7 +84,8 @@ public class Background : MonoBehaviour
                         if (mouseX < 1075)
                         {
                             Debug.Log(3);
-                            levelLoader.LoadLevel(Levels.levelThree);
+                            loadedLevel = Levels.levelThree;
+                            levelLoader.LoadLevel(loadedLevel);
                             SwitchCameras();
                         }
                     }
@@ -101,7 +95,8 @@ public class Background : MonoBehaviour
                         if (mouseX < 1400)
                         {
                             Debug.Log(4);
-                            levelLoader.LoadLevel(Levels.levelFour);
+                            loadedLevel = Levels.levelFour;
+                            levelLoader.LoadLevel(loadedLevel);
                             SwitchCameras();
                         }
                     }
