@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Background : MonoBehaviour
 {
@@ -41,6 +42,10 @@ public class Background : MonoBehaviour
             levelLoader.LoadLevel(loadedLevel);
 
         }
+        if (Input.GetKeyDown(KeyCode.G)) {
+            SceneManager.LoadScene("levelEditor");
+        }
+
 
         // Check for a key press (e.g., the 'C' key)
         if (playing)
@@ -111,7 +116,10 @@ public class Background : MonoBehaviour
                         if (mouseX < 1715)
                         {
                             Debug.Log(5);
-                        }
+                            loadedLevel = Levels.levelFive;
+                            loadedLevelName = "levelFive";
+                            levelLoader.LoadLevel(loadedLevel);
+                            SwitchCameras();                        }
                     } 
                     // level 6
                     if(mouseX > 1780)
@@ -119,6 +127,10 @@ public class Background : MonoBehaviour
                         if (mouseX < 2030)
                         {
                             Debug.Log(6);
+                            loadedLevel = Levels.levelSix;
+                            loadedLevelName = "levelSix";
+                            levelLoader.LoadLevel(loadedLevel);
+                            SwitchCameras();
                         }
                     }
                     //level 7
@@ -127,6 +139,10 @@ public class Background : MonoBehaviour
                         if (mouseX < 2350)
                         {
                             Debug.Log(7);
+                            loadedLevel = Levels.levelSeven;
+                            loadedLevelName = "levelSeven";
+                            levelLoader.LoadLevel(loadedLevel);
+                            SwitchCameras();
                         }
                     }
                 }

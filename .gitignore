@@ -25,6 +25,9 @@ generate_level.py
 *.mdb
 *.opendb
 *.VC.db
+EditorController.cs
+LevelEditor.unity
+LevelEditor.unity.meta
 
 # Unity3D generated meta files
 *.pidb.meta
