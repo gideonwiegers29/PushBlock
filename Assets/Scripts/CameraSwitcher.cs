@@ -17,6 +17,7 @@ public class Background : MonoBehaviour
     public float mouseY;
     public static bool playing;
     public int[,] loadedLevel;
+    public string loadedLevelName;
 
     void Start()
     {
@@ -63,6 +64,7 @@ public class Background : MonoBehaviour
                         {
                             Debug.Log(1);
                             loadedLevel = Levels.levelOne;
+                            loadedLevelName = "levelOne";
                             levelLoader.LoadLevel(loadedLevel);
                             SwitchCameras();
                         }
@@ -74,6 +76,7 @@ public class Background : MonoBehaviour
                         {
                             Debug.Log(2);
                             loadedLevel = Levels.levelTwo;
+                            loadedLevelName = "levelTwo";
                             levelLoader.LoadLevel(loadedLevel);
                             SwitchCameras();
                         }
@@ -85,6 +88,7 @@ public class Background : MonoBehaviour
                         {
                             Debug.Log(3);
                             loadedLevel = Levels.levelThree;
+                            loadedLevelName = "levelThree";
                             levelLoader.LoadLevel(loadedLevel);
                             SwitchCameras();
                         }
@@ -96,6 +100,7 @@ public class Background : MonoBehaviour
                         {
                             Debug.Log(4);
                             loadedLevel = Levels.levelFour;
+                            loadedLevelName = "levelFour";
                             levelLoader.LoadLevel(loadedLevel);
                             SwitchCameras();
                         }
@@ -142,7 +147,7 @@ public class Background : MonoBehaviour
         }
     }
 
-    void SwitchCameras()
+    public void SwitchCameras()
     {
         // Toggle the enabled state of both cameras
         if (cameraOne != null && cameraTwo != null)
