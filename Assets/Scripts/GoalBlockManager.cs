@@ -38,6 +38,7 @@ public class GoalBlockManager : MonoBehaviour
     {
         if (IsOccupied(goalBlock.transform.position, playerBlock)) {
             Debug.Log("Level Complete");
+            goalBlock.transform.position += Vector3.up;
             if (PlayerPrefs.GetInt($"{background.loadedLevelName}_complete", 0) == 0)
             {
                 markLvlAsComplete(background.loadedLevel, background.loadedLevelName);
@@ -70,7 +71,7 @@ public class GoalBlockManager : MonoBehaviour
         objRenderer.material.color = color;
 
 
-
+        
         int done = PlayerPrefs.GetInt($"{levelName}_complete", 0);
     }
 
