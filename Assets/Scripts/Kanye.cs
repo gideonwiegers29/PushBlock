@@ -9,6 +9,7 @@ public class Kanye : MonoBehaviour
     public bool kanyeWasRun = false;
     System.Random random = new System.Random();
     private bool previousScreenToggled = false;
+    public GameObject directionalLight;
 
     
 
@@ -32,10 +33,6 @@ public class Kanye : MonoBehaviour
             kanyeWasRun = false;
         }
         previousScreenToggled = Background.ifScreenToggled;
-        if (Input.GetKeyDown(KeyCode.Z))
-        {
-            kanyeNumber = random.Next(1, 101);
-        }
         if (kanyeNumber == 55)
         {
             Debug.Log("Kanye");
@@ -46,5 +43,6 @@ public class Kanye : MonoBehaviour
     {
         GetComponent<Renderer>().material.mainTexture = KanyeJpeg;
         WallUI.GetComponent<Renderer>().material.mainTexture = KanyeJpeg;
+        directionalLight.GetComponent<Light>().enabled = true;   // or false
     }
 }
