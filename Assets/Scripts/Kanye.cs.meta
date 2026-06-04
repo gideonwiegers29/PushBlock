@@ -1,0 +1,13 @@
+fileFormatVersion: 2
+guid: ac82673d5ee864b088ab0d2a0b1a00a5
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - WallUI: {instanceID: 0}
+  - KanyeJpeg: {fileID: 2800000, guid: fda52e734f4a04a29b45067e990266f8, type: 3}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

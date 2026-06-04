@@ -13,12 +13,13 @@ public class Background : MonoBehaviour
     private int frameCount;
     public int targetFrameRate = 100;
     public GameObject text;
-    public bool ifScreenToggled = true;
+    public static bool ifScreenToggled = true;
     public float mouseX;
     public float mouseY;
     public static bool playing;
     public int[,] loadedLevel;
     public string loadedLevelName;
+    public AudioSource buttonPressedSound;
 
     void Start()
     {
@@ -62,6 +63,7 @@ public class Background : MonoBehaviour
             {
                 if (Input.GetMouseButtonDown(0))
                 {
+                    
                     //level 1
                     if(mouseX > 225)
                     {
@@ -71,6 +73,7 @@ public class Background : MonoBehaviour
                             loadedLevel = Levels.levelOne;
                             loadedLevelName = "levelOne";
                             levelLoader.LoadLevel(loadedLevel);
+                            buttonPressedSound.GetComponent<AudioSource>().Play();
                             SwitchCameras();
                         }
                     }
@@ -83,6 +86,7 @@ public class Background : MonoBehaviour
                             loadedLevel = Levels.levelTwo;
                             loadedLevelName = "levelTwo";
                             levelLoader.LoadLevel(loadedLevel);
+                            buttonPressedSound.GetComponent<AudioSource>().Play();
                             SwitchCameras();
                         }
                     }
@@ -95,6 +99,7 @@ public class Background : MonoBehaviour
                             loadedLevel = Levels.levelThree;
                             loadedLevelName = "levelThree";
                             levelLoader.LoadLevel(loadedLevel);
+                            buttonPressedSound.GetComponent<AudioSource>().Play();
                             SwitchCameras();
                         }
                     }
@@ -107,6 +112,7 @@ public class Background : MonoBehaviour
                             loadedLevel = Levels.levelFour;
                             loadedLevelName = "levelFour";
                             levelLoader.LoadLevel(loadedLevel);
+                            buttonPressedSound.GetComponent<AudioSource>().Play();
                             SwitchCameras();
                         }
                     }
@@ -119,7 +125,9 @@ public class Background : MonoBehaviour
                             loadedLevel = Levels.levelFive;
                             loadedLevelName = "levelFive";
                             levelLoader.LoadLevel(loadedLevel);
-                            SwitchCameras();                        }
+                            buttonPressedSound.GetComponent<AudioSource>().Play();
+                            SwitchCameras();                        
+                        }
                     } 
                     // level 6
                     if(mouseX > 1780)
@@ -130,6 +138,7 @@ public class Background : MonoBehaviour
                             loadedLevel = Levels.levelSix;
                             loadedLevelName = "levelSix";
                             levelLoader.LoadLevel(loadedLevel);
+                            buttonPressedSound.GetComponent<AudioSource>().Play();
                             SwitchCameras();
                         }
                     }
@@ -142,6 +151,7 @@ public class Background : MonoBehaviour
                             loadedLevel = Levels.levelSeven;
                             loadedLevelName = "levelSeven";
                             levelLoader.LoadLevel(loadedLevel);
+                            buttonPressedSound.GetComponent<AudioSource>().Play();
                             SwitchCameras();
                         }
                     }
@@ -150,7 +160,7 @@ public class Background : MonoBehaviour
         }
         }
         time += Time.deltaTime;
-        frameCount++;   
+        frameCount++;
         if (time >= pollingTime)
         {
             int frameRate = Mathf.RoundToInt(frameCount / time);

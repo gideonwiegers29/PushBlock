@@ -25,6 +25,7 @@ public class BlockHandler : MonoBehaviour
     public bool moving = false;
     public int moveDelay = 200;
     public int maxMoves = 17;
+    public AudioSource hitWallSound;
 
 
     // Update is called once per frame
@@ -58,6 +59,7 @@ public class BlockHandler : MonoBehaviour
             if (IsOccupied(next_pos) == false) {
                 cube.transform.position = next_pos;
             } else {
+                hitWallSound.GetComponent<AudioSource>().Play();
                 moving = false;
                 Debug.Log("stopping");
                 break;

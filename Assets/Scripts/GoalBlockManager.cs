@@ -7,6 +7,7 @@ public class GoalBlockManager : MonoBehaviour
     public Background background;
     public GameObject UIParent;
     GameObject levelButton;
+    public AudioSource levelCompleteSound;
 
 
     void Start()
@@ -39,6 +40,7 @@ public class GoalBlockManager : MonoBehaviour
         if (IsOccupied(goalBlock.transform.position, playerBlock)) {
             Debug.Log("Level Complete");
             goalBlock.transform.position += Vector3.up;
+            levelCompleteSound.GetComponent<AudioSource>().Play();
             if (PlayerPrefs.GetInt($"{background.loadedLevelName}_complete", 0) == 0)
             {
                 markLvlAsComplete(background.loadedLevel, background.loadedLevelName);
@@ -69,6 +71,7 @@ public class GoalBlockManager : MonoBehaviour
         Color color;
         ColorUtility.TryParseHtmlString("#FF5733", out color);
         objRenderer.material.color = color;
+        
 
 
         
