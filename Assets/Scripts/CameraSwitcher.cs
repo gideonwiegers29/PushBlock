@@ -13,6 +13,7 @@ public class Background : MonoBehaviour
     private int frameCount;
     public int targetFrameRate = 100;
     public GameObject text;
+    public GameObject resetText;
     public static bool ifScreenToggled = true;
     public float mouseX;
     public float mouseY;
@@ -43,7 +44,7 @@ public class Background : MonoBehaviour
             levelLoader.LoadLevel(loadedLevel);
 
         }
-        if (Input.GetKeyDown(KeyCode.G)) {
+        if (Input.GetKey(KeyCode.G) && Input.GetKey(KeyCode.H) && Input.GetKey(KeyCode.J)) {
             SceneManager.LoadScene("levelEditor");
         }
 
@@ -183,6 +184,7 @@ public class Background : MonoBehaviour
         }
         ifScreenToggled = !ifScreenToggled;
         text.SetActive(ifScreenToggled);
+        resetText.SetActive(!ifScreenToggled);
         playing = !playing;
     }
 }

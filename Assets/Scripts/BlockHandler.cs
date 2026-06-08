@@ -80,10 +80,8 @@ public class BlockHandler : MonoBehaviour
     {
         Collider[] hitColliders = Physics.OverlapSphere(position, 0.1f);
 
-        foreach (Collider hitCollider in hitColliders)
-        {
-            if (hitCollider.gameObject != goalBlock && hitCollider.gameObject != invisPlat && hitCollider.gameObject != player)
-            {
+        foreach (Collider hitCollider in hitColliders) {
+            if (hitCollider.gameObject != goalBlock && hitCollider.gameObject != invisPlat && hitCollider.gameObject != player) {
                 return true;
             }
         }
