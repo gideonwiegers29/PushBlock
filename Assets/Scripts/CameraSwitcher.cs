@@ -52,114 +52,20 @@ public class Background : MonoBehaviour
         // Check for a key press (e.g., the 'C' key)
         if (playing)
         {
-        if (Input.GetKeyDown(KeyCode.P))
-        {
-            SwitchCameras();
-        }
-        }
-        if(!playing){
-        if (mouseY < 545)
-        {
-            if(mouseY > 360)
-            {
-                if (Input.GetMouseButtonDown(0))
-                {
-                    
-                    //level 1
-                    if(mouseX > 169)
-                    {
-                        if (mouseX < 338)
-                        {
-                            Debug.Log(1);
-                            loadedLevel = Levels.levelOne;
-                            loadedLevelName = "levelOne";
-                            levelLoader.LoadLevel(loadedLevel);
-                            buttonPressedSound.GetComponent<AudioSource>().Play();
-                            SwitchCameras();
-                        }
-                    }
-                    //level 2
-                    if(mouseX > 405)
-                    {
-                        if (mouseX < 563)
-                        {
-                            Debug.Log(2);
-                            loadedLevel = Levels.levelTwo;
-                            loadedLevelName = "levelTwo";
-                            levelLoader.LoadLevel(loadedLevel);
-                            buttonPressedSound.GetComponent<AudioSource>().Play();
-                            SwitchCameras();
-                        }
-                    }
-                    //level 3
-                    if(mouseX > 638)
-                    {
-                        if (mouseX < 806)
-                        {
-                            Debug.Log(3);
-                            loadedLevel = Levels.levelThree;
-                            loadedLevelName = "levelThree";
-                            levelLoader.LoadLevel(loadedLevel);
-                            buttonPressedSound.GetComponent<AudioSource>().Play();
-                            SwitchCameras();
-                        }
-                    }
-                    //level 4
-                    if(mouseX > 863)
-                    {
-                        if (mouseX < 1050)
-                        {
-                            Debug.Log(4);
-                            loadedLevel = Levels.levelFour;
-                            loadedLevelName = "levelFour";
-                            levelLoader.LoadLevel(loadedLevel);
-                            buttonPressedSound.GetComponent<AudioSource>().Play();
-                            SwitchCameras();
-                        }
-                    }
-                    //level 5
-                    if(mouseX > 1106)
-                    {
-                        if (mouseX < 1286)
-                        {
-                            Debug.Log(5);
-                            loadedLevel = Levels.levelFive;
-                            loadedLevelName = "levelFive";
-                            levelLoader.LoadLevel(loadedLevel);
-                            buttonPressedSound.GetComponent<AudioSource>().Play();
-                            SwitchCameras();                        
-                        }
-                    } 
-                    // level 6
-                    if(mouseX > 1335)
-                    {
-                        if (mouseX < 1523)
-                        {
-                            Debug.Log(6);
-                            loadedLevel = Levels.levelSix;
-                            loadedLevelName = "levelSix";
-                            levelLoader.LoadLevel(loadedLevel);
-                            buttonPressedSound.GetComponent<AudioSource>().Play();
-                            SwitchCameras();
-                        }
-                    }
-                    //level 7
-                    if(mouseX > 1575)
-                    {   
-                        if (mouseX < 1763)
-                        {
-                            Debug.Log(7);
-                            loadedLevel = Levels.levelSeven;
-                            loadedLevelName = "levelSeven";
-                            levelLoader.LoadLevel(loadedLevel);
-                            buttonPressedSound.GetComponent<AudioSource>().Play();
-                            SwitchCameras();
-                        }
-                    }
-                }
+            if (Input.GetKeyDown(KeyCode.P)) {
+                SwitchCameras();
             }
         }
+
+        if (!playing && Input.GetMouseButtonDown(0)) {
+            Camera cam = cameraOne.enabled ? cameraOne : cameraTwo;
+            Ray ray = cam.ScreenPointToRay(Input.mousePosition);
+            if (Physics.Raycast(ray, out RaycastHit hit))
+            {
+                TryLoadLevel(hit.collider.tag);
+            }
         }
+
         time += Time.deltaTime;
         frameCount++;
         if (time >= pollingTime)
@@ -187,4 +93,27 @@ public class Background : MonoBehaviour
         resetText.SetActive(!ifScreenToggled);
         playing = !playing;
     }
+
+    void TryLoadLevel(string tag)
+    {
+        int[,] level = null;
+        string name = null;
+        switch (tag)
+        {
+            case "Level1": level = Levels.levelOne;   name = "levelOne";   break;
+            case "Level2": level = Levels.levelTwo;   name = "levelTwo";   break;
+            case "Level3": level = Levels.levelThree; name = "levelThree"; break;
+            case "Level4": level = Levels.levelFour;  name = "levelFour";  break;
+            case "Level5": level = Levels.levelFive;  name = "levelFive";  break;
+            case "Level6": level = Levels.levelSix;   name = "levelSix";   break;
+            case "Level7": level = Levels.levelSeven; name = "levelSeven"; break;
+            default: return;
+        }
+        loadedLevel = level;
+        loadedLevelName = name;
+        levelLoader.LoadLevel(level);
+        buttonPressedSound.Play();
+        SwitchCameras();
+    }
+
 }

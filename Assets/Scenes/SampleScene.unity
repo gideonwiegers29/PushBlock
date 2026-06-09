@@ -1279,12 +1279,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0cd44c1031e13a943bb63640046fad76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.CanvasScaler
-  m_UiScaleMode: 0
+  m_UiScaleMode: 1
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 1
-  m_ReferenceResolution: {x: 800, y: 600}
+  m_ReferenceResolution: {x: 1920, y: 1080}
   m_ScreenMatchMode: 0
-  m_MatchWidthOrHeight: 0
+  m_MatchWidthOrHeight: 0.5
   m_PhysicalUnit: 3
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
@@ -1913,7 +1913,7 @@ GameObject:
   - component: {fileID: 846300457}
   m_Layer: 0
   m_Name: levelFour
-  m_TagString: Untagged
+  m_TagString: Level4
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2162,7 +2162,7 @@ GameObject:
   - component: {fileID: 1019508638}
   m_Layer: 0
   m_Name: levelFive
-  m_TagString: Untagged
+  m_TagString: Level5
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2429,7 +2429,7 @@ GameObject:
   - component: {fileID: 1077753991}
   m_Layer: 0
   m_Name: levelSix
-  m_TagString: Untagged
+  m_TagString: Level6
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2732,7 +2732,7 @@ GameObject:
   - component: {fileID: 1247783831}
   m_Layer: 0
   m_Name: levelOne
-  m_TagString: Untagged
+  m_TagString: Level1
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3242,7 +3242,7 @@ GameObject:
   - component: {fileID: 1438146091}
   m_Layer: 0
   m_Name: levelTwo
-  m_TagString: Untagged
+  m_TagString: Level2
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3962,12 +3962,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0cd44c1031e13a943bb63640046fad76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.CanvasScaler
-  m_UiScaleMode: 0
+  m_UiScaleMode: 1
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 1
-  m_ReferenceResolution: {x: 800, y: 600}
+  m_ReferenceResolution: {x: 1920, y: 1080}
   m_ScreenMatchMode: 0
-  m_MatchWidthOrHeight: 0
+  m_MatchWidthOrHeight: 0.5
   m_PhysicalUnit: 3
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
@@ -4412,7 +4412,7 @@ GameObject:
   - component: {fileID: 2016857142}
   m_Layer: 0
   m_Name: levelSeven
-  m_TagString: Untagged
+  m_TagString: Level7
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4524,7 +4524,7 @@ GameObject:
   - component: {fileID: 2087233587}
   m_Layer: 0
   m_Name: levelThree
-  m_TagString: Untagged
+  m_TagString: Level3
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
