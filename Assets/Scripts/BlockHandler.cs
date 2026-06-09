@@ -55,11 +55,13 @@ public class BlockHandler : MonoBehaviour
         while (times_moved <= maxMoves) {
             Vector3 position = cube.transform.position;
             Vector3 next_pos = getNextPos(normal, position);
-            Debug.Log(next_pos);
             if (IsOccupied(next_pos) == false) {
+                Vector3 future_pos = getNextPos(normal, next_pos);
+                if (IsOccupied(future_pos) == true) {
+                    hitWallSound.GetComponent<AudioSource>().Play();
+                }
                 cube.transform.position = next_pos;
             } else {
-                hitWallSound.GetComponent<AudioSource>().Play();
                 moving = false;
                 Debug.Log("stopping");
                 break;

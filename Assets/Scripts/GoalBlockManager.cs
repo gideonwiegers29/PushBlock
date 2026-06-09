@@ -12,7 +12,7 @@ public class GoalBlockManager : MonoBehaviour
 
     void Start()
     {
-        string[] levelNames = { "levelOne", "levelTwo", "levelThree", "levelFour" };
+        string[] levelNames = { "levelOne", "levelTwo", "levelThree", "levelFour", "levelFive", "levelSix", "levelSeven" };
         foreach (string name in levelNames)
         {
             if (PlayerPrefs.GetInt(name + "_complete", 0) == 1)

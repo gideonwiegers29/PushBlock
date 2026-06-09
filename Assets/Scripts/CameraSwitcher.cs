@@ -58,17 +58,17 @@ public class Background : MonoBehaviour
         }
         }
         if(!playing){
-        if (mouseY < 726)
+        if (mouseY < 545)
         {
-            if(mouseY > 480)
+            if(mouseY > 360)
             {
                 if (Input.GetMouseButtonDown(0))
                 {
                     
                     //level 1
-                    if(mouseX > 225)
+                    if(mouseX > 169)
                     {
-                        if (mouseX < 450)
+                        if (mouseX < 338)
                         {
                             Debug.Log(1);
                             loadedLevel = Levels.levelOne;
@@ -79,9 +79,9 @@ public class Background : MonoBehaviour
                         }
                     }
                     //level 2
-                    if(mouseX > 540)
+                    if(mouseX > 405)
                     {
-                        if (mouseX < 750)
+                        if (mouseX < 563)
                         {
                             Debug.Log(2);
                             loadedLevel = Levels.levelTwo;
@@ -92,9 +92,9 @@ public class Background : MonoBehaviour
                         }
                     }
                     //level 3
-                    if(mouseX > 850)
+                    if(mouseX > 638)
                     {
-                        if (mouseX < 1075)
+                        if (mouseX < 806)
                         {
                             Debug.Log(3);
                             loadedLevel = Levels.levelThree;
@@ -105,9 +105,9 @@ public class Background : MonoBehaviour
                         }
                     }
                     //level 4
-                    if(mouseX > 1150)
+                    if(mouseX > 863)
                     {
-                        if (mouseX < 1400)
+                        if (mouseX < 1050)
                         {
                             Debug.Log(4);
                             loadedLevel = Levels.levelFour;
@@ -118,9 +118,9 @@ public class Background : MonoBehaviour
                         }
                     }
                     //level 5
-                    if(mouseX > 1475)
+                    if(mouseX > 1106)
                     {
-                        if (mouseX < 1715)
+                        if (mouseX < 1286)
                         {
                             Debug.Log(5);
                             loadedLevel = Levels.levelFive;
@@ -131,9 +131,9 @@ public class Background : MonoBehaviour
                         }
                     } 
                     // level 6
-                    if(mouseX > 1780)
+                    if(mouseX > 1335)
                     {
-                        if (mouseX < 2030)
+                        if (mouseX < 1523)
                         {
                             Debug.Log(6);
                             loadedLevel = Levels.levelSix;
@@ -144,9 +144,9 @@ public class Background : MonoBehaviour
                         }
                     }
                     //level 7
-                    if(mouseX > 2100)
+                    if(mouseX > 1575)
                     {   
-                        if (mouseX < 2350)
+                        if (mouseX < 1763)
                         {
                             Debug.Log(7);
                             loadedLevel = Levels.levelSeven;
